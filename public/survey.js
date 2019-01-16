@@ -22,22 +22,6 @@ function init() {
   model.css = css;
   window.survey = model;
   model.render("surveyElement");
-
-  // // Load survey by id from url
-  // var xhr = new XMLHttpRequest();
-  // xhr.open('GET', "https://surveyjs-php.herokuapp.com" + '/survey?surveyId=' + surveyId);
-  // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  // xhr.onload = function () {
-  //     var result = JSON.parse(xhr.response);
-  //     if(!!result) {
-  //         var surveyModel = new Survey.Model(result);
-  //         window.survey = surveyModel;
-  //         ko.cleanNode(document.getElementById("surveyElement"));
-  //         document.getElementById("surveyElement").innerText = "";
-  //         surveyModel.render("surveyElement");
-  //     }
-  // };
-  // xhr.send();
 }
 
 init();

@@ -1,10 +1,10 @@
-function SurveyManager(baseUrl, accessKey) {
+function SurveyManager(baseUrl) {
   var self = this;
   self.availableSurveys = ko.observableArray();
 
   self.loadSurveys = function() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", baseUrl + "/getActive?accessKey=" + accessKey);
+    xhr.open("GET", baseUrl + "/getActive");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       var result = xhr.response ? JSON.parse(xhr.response) : {};
@@ -25,7 +25,7 @@ function SurveyManager(baseUrl, accessKey) {
     var xhr = new XMLHttpRequest();
     xhr.open(
       "GET",
-      baseUrl + "/create?accessKey=" + accessKey + "&name=" + name
+      baseUrl + "/create?name=" + name
     );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
@@ -38,14 +38,13 @@ function SurveyManager(baseUrl, accessKey) {
   self.deleteSurvey = function(id, onDelete) {
     if (confirm("Are you sure?")) {
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", baseUrl + "/delete?accessKey=" + accessKey + "&id=" + id);
+      xhr.open("GET", baseUrl + "/delete?id=" + id);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.onload = function() {
         var result = xhr.response ? JSON.parse(xhr.response) : null;
         !!onDelete && onDelete(xhr.status == 200, result, xhr.response);
       };
       xhr.send();
-      window.location = "/";
     }
   };
 

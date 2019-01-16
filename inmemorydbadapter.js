@@ -1,11 +1,12 @@
 var demoData = require("./demo-surveys");
 
-function InMemoryDBAdapter(session) {
+
+function InMemoryDBAdapter(database) {
   function getTable(tableName) {
-    var table = session[tableName];
+    var table = database[tableName];
     if (!table) {
       table = [];
-      session[tableName] = table;
+      database[tableName] = table;
     }
     return table;
   }
