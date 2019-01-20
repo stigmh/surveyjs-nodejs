@@ -1,12 +1,16 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var dbadapter = require("./dbadapter");
-var inmemorydbadapter = require("./inmemorydbadapter");
+//var postgresqladapter = require("./postgresqladapter");
+//var inmemorydbadapter = require("./inmemorydbadapter");
+var sqliteadapter = require("./sqliteadapter");
 
 var app = express();
-var database = {};
-//const db = new dbadapter();
-const db = new inmemorydbadapter(database);
+//const db = new postgresqladapter();
+ 
+//var database = {};
+//const db = new inmemorydbadapter(database);
+
+const db = new sqliteadapter('survey.db');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
